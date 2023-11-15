@@ -20,7 +20,7 @@ export default function NavBar() {
       <div className="max-w-7xl m-auto flex flex-wrap gap-3 items-center justify-between">
         <Link href="/notes" className="flex items-center gap-1">
           <Image src={logo} alt="FlowBrain Logo" width={40} height={40} />
-          <span className="font-bold">FlowBrain</span>
+          <span className="font-bold">Notion</span>
         </Link>
         <div className="flex items-center gap-2">
           <UserButton

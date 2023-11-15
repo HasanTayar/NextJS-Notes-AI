@@ -23,6 +23,7 @@ import LoadingButton from "./ui/loading-button";
 import { useRouter } from "next/navigation";
 import { Note as NoteModel } from "@prisma/client";
 import { useState } from "react";
+import { useToast } from "./ui/use-toast";
 interface AddEditNoteDialogProps {
   open: boolean;
   setOpen: (open: boolean) => void;
@@ -43,7 +44,7 @@ export default function AddEditNoteDialog({
       content: noteToEdit?.title || "",
     },
   });
-
+  const { toast } = useToast()
   async function onSumbit(input: CreateNoteSchema) {
     try {
       if (noteToEdit) {
@@ -67,7 +68,11 @@ export default function AddEditNoteDialog({
       }
     } catch (error) {
       console.error(error);
-      alert("Some Thing Went wrong. Please try again");
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "There was a problem with your request.",
+      })
     }
   }
   async function deleteNote() {
@@ -86,7 +91,11 @@ export default function AddEditNoteDialog({
       
     } catch (error) {
       console.error(error)
-      alert("Some Thing Went wrong. Please try again");
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "There was a problem with your request.",
+      })
     }finally{
       setDeleteInProgress(false)
     }
